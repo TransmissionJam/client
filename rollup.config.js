@@ -6,17 +6,23 @@ const postcss = require('rollup-plugin-postcss');
 const postcssImport = require('postcss-import');
 const jscc = require('rollup-plugin-jscc');
 const builtins = require('rollup-plugin-node-builtins');
+const vue = require('rollup-plugin-vue');
+const async = require('rollup-plugin-async');
 
 module.exports = {
-  input: 'src/js/app.js',
+  input: 'src/app.js',
   output:
   { file: 'public/main.js'
-  , format: 'umd'
+  , format: 'iife'
   , sourcemap: true
   , strict: false
   },
   plugins:
-  [ jscc
+  [ vue
+    ({
+      css: './public/vue.css'
+    })
+  , jscc
     ({
       values:
       {
@@ -40,6 +46,7 @@ module.exports = {
         })
       ]
     })
+  ,  async()
   , commonjs
     ({
       namedExports:

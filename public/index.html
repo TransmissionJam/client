@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Transmission Control</title>
+    <link rel="stylesheet" type="text/css" href="/vue.css"/>
+    <link rel="stylesheet" type="text/css" href="/main.css"/>
+  </head>
+  <body>
+    <div id="app">
+      <div id="display">
+        <canvas></canvas>
+      </div>
+      <div id="transmission">
+        <div class="buffer"></div>
+        <div class="sent"></div>
+      </div>
+      <tc-command-buffer></tc-command-buffer>
+    </div>
+    <script>
+      var tc =
+      {
+        socket:
+        {
+          url: 'http://localhost',
+          enabled: false
+        }
+      };
+    </script>
+    <script src="/lib/vue/dist/vue.js"></script>
+    <script src="/main.js"></script>
+    <script>
+      window.app.init({});
+    </script>
+  </body>
+</html>

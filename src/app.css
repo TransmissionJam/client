@@ -1,0 +1,28 @@
+html,body
+{
+  margin: 0px;
+  padding: 0px;
+}
+
+body
+{
+  background-color: #1a1925
+}
+
+#display
+{
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  bottom: 150px;
+}
+
+#display canvas
+{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
