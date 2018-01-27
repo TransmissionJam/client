@@ -34,8 +34,8 @@ import './app.css';
 
   events.on('commands:send', (commands) =>
   {
-    // TODO: send commands
-    events.emit('transmission:commands', (()=>
+    // TODO: send commands via socket
+    events.emit('transmission:buffer', (()=>
     {
       let list = [];
       commands.forEach((command) =>

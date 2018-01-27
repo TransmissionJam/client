@@ -36,7 +36,7 @@ export default
   {
     let instance = this;
 
-    window.app.events.on('transmission:commands', (commands) =>
+    window.app.events.on('transmission:buffer', (commands) =>
     {
       instance.buffer.splice(0);
 
@@ -68,8 +68,8 @@ export default
 
 #transmission-panel .command
 {
-  width: 44px;
-  height: 44px;
+  width: 20px;
+  height: 20px;
   margin: 3px;
   background-size: contain;
 }
