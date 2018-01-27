@@ -54,12 +54,21 @@ export default
       {
         case 'delete':
         {
-          //commandBuffer.delete();
+          instance.commands.pop();
         } break;
 
         case 'send':
         {
-          //commandBuffer.send();
+          window.app.events.emit('commands:send',((commands)=>
+          {
+            let list = [];
+            commands.forEach((command) =>
+            {
+              list.push(command.command);
+            });
+            return list;
+          })(instance.commands));
+          instance.commands.splice(0);
         } break;
 
         default:
