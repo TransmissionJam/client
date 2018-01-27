@@ -2,3 +2,4 @@ node_modules
 lib
 public/main.*
 public/main.*
+public/vue.css
