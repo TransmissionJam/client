@@ -51,6 +51,14 @@ body
   bottom: 10px;
 }
 
+
+#transmission-panel
+{
+  position: absolute;
+  right: 10px;
+  top: 70px;
+}
+
 .notyf
 {
   font-family: 'VT323', monospace;

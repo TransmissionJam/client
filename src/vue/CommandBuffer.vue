@@ -20,6 +20,7 @@
 <script>
 import Notfy from '~node_modules/notyf/dist/notyf.min.js';
 const _notfy = new Notyf();
+import utils from '../utils.js';
 
 export default
 {
@@ -38,24 +39,7 @@ export default
     window.app.events.on('command', function()
     {
       let command = this.event.match(/command:(.+)/)[1];
-      let type = '';
-
-      switch(command)
-      {
-        case 'north':
-        case 'south':
-        case 'west':
-        case 'east':
-        {
-          type = 'direction';
-        } break;
-
-        case 'rotate-c':
-        case 'rotate-cc':
-        {
-          type = 'rotation';
-        } break;
-      }
+      let type = utils.getCommandType(command);
 
       if(instance.commands.length >= 8 && type != '')
       {
@@ -76,7 +60,7 @@ export default
           {
             return false;
           }
-          
+
           window.app.events.emit('commands:send',((commands)=>
           {
             let list = [];

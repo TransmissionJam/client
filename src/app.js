@@ -35,7 +35,16 @@ import './app.css';
   events.on('commands:send', (commands) =>
   {
     // TODO: send commands
-    console.log(commands);
+    events.emit('transmission:commands', (()=>
+    {
+      let list = [];
+      commands.forEach((command) =>
+      {
+        list.push({user: 'self', command: command});
+      });
+
+      return list;
+    })());
   });
 
   window.app =
