@@ -119,46 +119,6 @@ export default
   float: left;
 }
 
-#command-buffer .command.direction
-{
-  background-image: url(images/command-arrow.png);
-}
-
-#command-buffer .command.rotation
-{
-  background-image: url(images/command-rotate.png);
-}
-
-#command-buffer .command.south
-{
-  transform: rotateZ(180deg);
-}
-
-#command-buffer .command.west
-{
-  transform: rotateZ(-90deg);
-}
-
-#command-buffer .command.east
-{
-  transform: rotateZ(90deg);
-}
-
-#command-buffer .command.rotate-c
-{
-  transform: scaleX(-1);
-}
-
-#command-buffer .command.pickup
-{
-  background-image: url(images/command-pickup.png);
-}
-
-#command-buffer .command.drop
-{
-  background-image: url(images/command-drop.png);
-}
-
 #send
 {
   font-family: 'Bungee', cursive;

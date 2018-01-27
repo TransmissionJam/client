@@ -73,44 +73,4 @@ export default
   margin: 3px;
   background-size: contain;
 }
-
-#transmission-panel .command.direction
-{
-  background-image: url(images/command-arrow.png);
-}
-
-#transmission-panel .command.rotation
-{
-  background-image: url(images/command-rotate.png);
-}
-
-#transmission-panel .command.south
-{
-  transform: rotateZ(180deg);
-}
-
-#transmission-panel .command.west
-{
-  transform: rotateZ(-90deg);
-}
-
-#transmission-panel .command.east
-{
-  transform: rotateZ(90deg);
-}
-
-#transmission-panel .command.rotate-c
-{
-  transform: scaleX(-1);
-}
-
-#transmission-panel .command.pickup
-{
-  background-image: url(images/command-pickup.png);
-}
-
-#transmission-panel .command.drop
-{
-  background-image: url(images/command-drop.png);
-}
 </style>

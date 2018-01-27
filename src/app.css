@@ -63,3 +63,48 @@ body
 {
   font-family: 'VT323', monospace;
 }
+
+.command.direction
+{
+  background-image: url(images/command-arrow.png);
+}
+
+.command.rotation
+{
+  background-image: url(images/command-rotate.png);
+}
+
+.command.south
+{
+  transform: rotateZ(180deg);
+}
+
+.command.west
+{
+  transform: rotateZ(-90deg);
+}
+
+.command.east
+{
+  transform: rotateZ(90deg);
+}
+
+.command.rotate-c
+{
+  transform: scaleX(-1);
+}
+
+.command.pickup
+{
+  background-image: url(images/command-pickup.png);
+}
+
+.command.drop
+{
+  background-image: url(images/command-drop.png);
+}
+
+.command.scan
+{
+  background-image: url(images/command-scan.png);
+}

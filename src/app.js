@@ -30,6 +30,7 @@ import './app.css';
   Mousetrap.bind('shift+left', () => {events.emit('command:rotate-cc')});
   Mousetrap.bind('shift+right', () => {events.emit('command:rotate-c')});
   Mousetrap.bind('backspace', () => {events.emit('command:delete')});
+  Mousetrap.bind('space', () => {events.emit('command:scan')});
   Mousetrap.bind('return', () => {events.emit('command:send')});
 
   events.on('commands:send', (commands) =>
