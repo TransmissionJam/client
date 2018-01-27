@@ -46,7 +46,7 @@ export default
         case 'rotate-c':
         case 'rotate-cc':
         {
-          type = 'rotate';
+          type = 'rotation';
         } break;
       }
 
@@ -92,6 +92,11 @@ export default
   background-image: url(images/command-arrow.png);
 }
 
+#command-buffer .command.rotation
+{
+  background-image: url(images/command-rotate.png);
+}
+
 #command-buffer .command.south
 {
   transform: rotateZ(180deg);
@@ -105,5 +110,10 @@ export default
 #command-buffer .command.east
 {
   transform: rotateZ(90deg);
+}
+
+#command-buffer .command.rotate-c
+{
+  transform: scaleX(-1);
 }
 </style>
