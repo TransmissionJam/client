@@ -8,15 +8,22 @@
       >
       </div>
     </div>
-    <div id="send">
-
+    <div
+      id="send"
+      v-on:click="send"
+      :disabled="empty"
+    >
+      SEND
     </div>
   </div>
 </template>
 <script>
+import Notfy from '~node_modules/notyf/dist/notyf.min.js';
+const _notfy = new Notyf();
+
 export default
 {
-  name: "tc-command-buffer",
+  name: "tj-command-buffer",
   data: function()
   { return {
       commands: []
@@ -50,6 +57,12 @@ export default
         } break;
       }
 
+      if(instance.commands.length >= 8 && type != '')
+      {
+        _notfy.alert('You can queue up to 8 commands at a time! Send it or delete a few commands.');
+        return false;
+      }
+
       switch(command)
       {
         case 'delete':
@@ -59,6 +72,11 @@ export default
 
         case 'send':
         {
+          if(instance.commands.length == 0)
+          {
+            return false;
+          }
+          
           window.app.events.emit('commands:send',((commands)=>
           {
             let list = [];
@@ -69,6 +87,7 @@ export default
             return list;
           })(instance.commands));
           instance.commands.splice(0);
+          _notfy.confirm('Commands sent!');
         } break;
 
         default:
@@ -77,6 +96,20 @@ export default
         } break;
       }
     });
+  },
+  methods:
+  {
+    send: function()
+    {
+      window.app.events.emit('command:send');
+    }
+  },
+  computed:
+  {
+    empty: function()
+    {
+      return this.commands.length == 0;
+    }
   }
 }
 </script>
@@ -84,14 +117,20 @@ export default
 #command-buffer
 {
   height: 50px;
-  width: 500px;
-  background-color: rgba(255,255,255,0.5);
+  width: 400px;
+  background-color: rgb(22, 18, 18);
+  -webkit-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
+  box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
+  border-radius: 3px;
+  user-select: none;
 }
 
 #command-buffer .command
 {
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
+  margin: 3px;
   background-size: contain;
   float: left;
 }
@@ -134,5 +173,31 @@ export default
 #command-buffer .command.drop
 {
   background-image: url(images/command-drop.png);
+}
+
+#send
+{
+  font-family: 'Bungee', cursive;
+  background-color: #829d51;
+  color: #e8d8a8;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: -75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  border-radius: 3px;
+  -webkit-box-shadow: 5px 5px 20px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 5px 5px 20px -6px rgba(0,0,0,0.75);
+  box-shadow: 5px 5px 20px -6px rgba(0,0,0,0.75);
+  cursor: pointer;
+}
+
+#send[disabled]
+{
+  background-color: rgb(54, 50, 50);
+  cursor: not-allowed;
 }
 </style>

@@ -3,8 +3,9 @@ import Mousetrap from '~node_modules/mousetrap/mousetrap.min.js';
 import EventEmitter from '~node_modules/namespace-emitter/index.js';
 
 import CommandBuffer from './vue/CommandBuffer.vue';
+import TransmissionPanel from './vue/TransmissionPanel.vue';
 
-import './app.css'
+import './app.css';
 
 (() =>
 {
@@ -46,7 +47,8 @@ import './app.css'
         el: '#app',
         data: data,
         components:
-        { 'tc-command-buffer': CommandBuffer
+        { 'tj-command-buffer': CommandBuffer
+        , 'tj-transmission-panel': TransmissionPanel
         },
         watch:
         {
