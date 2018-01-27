@@ -116,4 +116,14 @@ export default
 {
   transform: scaleX(-1);
 }
+
+#command-buffer .command.pickup
+{
+  background-image: url(images/command-pickup.png);
+}
+
+#command-buffer .command.drop
+{
+  background-image: url(images/command-drop.png);
+}
 </style>
