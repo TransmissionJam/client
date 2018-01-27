@@ -6,16 +6,18 @@ html,body
 
 body
 {
-  background-color: #1a1925
+  background-color: #1a1925;
+  background-image: url(/images/bg.jpg);
 }
 
 #display
 {
   position: absolute;
   left: 20px;
-  right: 20px;
   top: 20px;
-  bottom: 150px;
+  width: 800px;
+  height: 500px;
+  background-color: black;
 }
 
 #display canvas
@@ -25,4 +27,11 @@ body
   right: 0px;
   top: 0px;
   bottom: 0px;
+}
+
+#command-buffer
+{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
 }
