@@ -13,10 +13,6 @@ import stub from './socket-stub.js';
 {
   const data = {};
   const events = new EventEmitter();
-  if(tc.socket.enabled)
-  {
-    const socket = io(tc.socket.url);
-  }
   
   Mousetrap.bind('up', () => {events.emit('command:north');});
   Mousetrap.bind('down', () => {events.emit('command:south')});
@@ -171,6 +167,30 @@ import stub from './socket-stub.js';
           render([]);
 
           events.on('world:update', render);
+
+          if(window.location.search)
+          {
+            var namespace;
+
+            var tokens = window.location.search.substring(1).split('&');
+            for(var i = 0; i < tokens.length; ++i)
+            {
+              var keyValue = tokens[i].split('=');
+
+              switch(keyValue[0])
+              {
+                case 'nps':
+                {
+                  namespace = keyValue[1];
+                } break;
+              }
+            }
+
+            if(namespace)
+            {
+              let socket = io(window.location.hostname + ':50001/' + namespace);
+            }
+          }
         }
       });
     },
