@@ -48,7 +48,7 @@ module.exports = {
   , commonjs
     ({
       namedExports:
-      { 'node_modules/howler/dist/howler.js': ['howler']
+      {
       }
     })
   , babel

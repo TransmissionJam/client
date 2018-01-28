@@ -156,6 +156,10 @@ import stub from './socket-stub.js';
     events: events
   };
 
+  new Howl({
+    src: ['/audio/bg-loop.mp3']
+  }).play();
+
   stub();
 })();
 
