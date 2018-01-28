@@ -55,23 +55,79 @@ import stub from './socket-stub.js';
 
           const _width = 800;
           const _height = 390;
+          const xLimit = _width / 10;
+          const yLimit = _height / 10;
 
           canvas.width = _width;
           canvas.height = _height;
 
-          function render()
+          function render(data)
           {
             ctx.clearRect(0, 0, _width, _height);
+            drawWorld(data);
             drawGrid();
+          }
 
-            requestAnimationFrame(render);
+          function drawWorld(data)
+          {
+            let resource = [];
+            let enemy = [];
+            let player = [];
+
+            for(let i = 0; i < data.length; ++i)
+            {
+              let x = i % xLimit * 10;
+              let y = Math.floor(i / xLimit) * 10;
+
+              switch(data[i])
+              {
+                case 1:
+                {
+                  player.push([x, y]);
+                } break;
+
+                case 2:
+                {
+                  enemy.push([x, y]);
+                } break;
+
+                case 3:
+                {
+                  resource.push([x, y]);
+                } break;
+              }
+            }
+
+            ctx.beginPath();
+            for(let i = 0; i < resource.length; ++i)
+            {
+              ctx.rect(resource[i][0], resource[i][1], 10, 10);
+            }
+
+            ctx.fillStyle = '#ffbf00';
+            ctx.fill();
+
+            ctx.beginPath();
+            for(let i = 0; i < enemy.length; ++i)
+            {
+              ctx.rect(enemy[i][0], enemy[i][1], 10, 10);
+            }
+
+            ctx.fillStyle = '#f90050';
+            ctx.fill();
+
+            ctx.beginPath();
+            for(let i = 0; i < player.length; ++i)
+            {
+              ctx.rect(player[i][0], player[i][1], 10, 10);
+            }
+
+            ctx.fillStyle = '#49f900';
+            ctx.fill();
           }
 
           function drawGrid()
           {
-            let xLimit = _width / 10;
-            let yLimit = _height / 10;
-
             ctx.strokeStyle = '#ff1177';
             ctx.lineWidth = 0.5;
             ctx.beginPath();
@@ -91,7 +147,9 @@ import stub from './socket-stub.js';
             ctx.stroke();
           }
 
-          render();
+          render([]);
+
+          events.on('world:update', render);
         }
       });
     },
