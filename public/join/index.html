@@ -57,7 +57,7 @@
     </div>
 
     <script>
-        const socket = io(window.location.hostname + ':50001');
+        const socket = io(window.location.hostname + ':50007');
 
         socket.on('update rooms', function (rooms) {
             game.rooms = rooms;
