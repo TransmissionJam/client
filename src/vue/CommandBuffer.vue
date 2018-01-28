@@ -103,12 +103,13 @@ export default
 {
   height: 50px;
   width: 400px;
+  border-radius: 3px;
+  user-select: none;
+  left: 150px;
   background-color: rgb(22, 18, 18);
   -webkit-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
   -moz-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
   box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
-  border-radius: 3px;
-  user-select: none;
 }
 
 #command-buffer .command

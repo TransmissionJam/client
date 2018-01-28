@@ -6,8 +6,31 @@ html,body
 
 body
 {
-  background-color: #1a1925;
   background-image: url(/images/bg.jpg);
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-repeat: no-repeat;
+}
+
+#app
+{
+  width: 1040px;
+  height: 476px;
+  margin: auto;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-image: url(/images/leather.jpg);
+  border: solid #3a3a3a 10px;
+  border-radius: 10px;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate;
 }
 
 #badge
@@ -28,10 +51,10 @@ body
 #display
 {
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 10px;
+  top: 12px;
   width: 800px;
-  height: 500px;
+  height: 390px;
   background-color: black;
 }
 
@@ -122,4 +145,13 @@ body
 .command.scan .icon
 {
   background-image: url(images/command-scan.png);
+}
+
+@-webkit-keyframes neon1 {
+  from {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
 }

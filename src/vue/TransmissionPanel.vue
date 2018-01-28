@@ -92,7 +92,7 @@ export default
 #transmission-panel
 {
   width: 157px;
-  height: 400px;
+  height: 310px;
   border-radius: 10px;
   user-select: none;
   padding: 20px 10px;
