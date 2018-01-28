@@ -7,6 +7,8 @@ import TransmissionPanel from './vue/TransmissionPanel.vue';
 
 import './app.css';
 
+import stub from './socket-stub.js';
+
 (() =>
 {
   const data = {};
@@ -33,21 +35,6 @@ import './app.css';
   Mousetrap.bind('space', () => {events.emit('command:scan')});
   Mousetrap.bind('return', () => {events.emit('command:send')});
 
-  events.on('commands:send', (commands) =>
-  {
-    // TODO: send commands via socket
-    events.emit('transmission:buffer', (()=>
-    {
-      let list = [];
-      commands.forEach((command) =>
-      {
-        list.push({user: 'self', command: command});
-      });
-
-      return list;
-    })());
-  });
-
   window.app =
   {
     init: () =>
@@ -70,5 +57,7 @@ import './app.css';
     },
     events: events
   };
+
+  stub();
 })();
 
