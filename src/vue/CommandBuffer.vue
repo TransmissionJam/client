@@ -72,7 +72,7 @@ export default
             return list;
           })(instance.commands));
           instance.commands.splice(0);
-          _notfy.confirm('Commands sent!');
+          _notfy.confirm('Commands sent to buffer!');
         } break;
 
         default:
