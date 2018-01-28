@@ -64,47 +64,62 @@ body
   font-family: 'VT323', monospace;
 }
 
-.command.direction
+.command
+{
+  position: relative;
+}
+
+.command .icon
+{
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.command.direction .icon
 {
   background-image: url(images/command-arrow.png);
 }
 
-.command.rotation
+.command.rotation .icon
 {
   background-image: url(images/command-rotate.png);
 }
 
-.command.south
+.command.south .icon
 {
   transform: rotateZ(180deg);
 }
 
-.command.west
+.command.west .icon
 {
   transform: rotateZ(-90deg);
 }
 
-.command.east
+.command.east .icon
 {
   transform: rotateZ(90deg);
 }
 
-.command.rotate-c
+.command.rotate-c .icon
 {
   transform: scaleX(-1);
 }
 
-.command.pickup
+.command.pickup .icon
 {
   background-image: url(images/command-pickup.png);
 }
 
-.command.drop
+.command.drop .icon
 {
   background-image: url(images/command-drop.png);
 }
 
-.command.scan
+.command.scan .icon
 {
   background-image: url(images/command-scan.png);
 }

@@ -6,6 +6,7 @@
         v-bind:key="i"
         :class="['command', command.type, command.command]"
       >
+        <div class="icon"></div>        
       </div>
     </div>
     <div
@@ -115,7 +116,6 @@ export default
   width: 44px;
   height: 44px;
   margin: 3px;
-  background-size: contain;
   float: left;
 }
 
