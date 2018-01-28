@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve-dev": "cross-env DEBUG=1 node ./utils/serve.js --watch"
+    "start": "cross-env DEBUG=1 node ./utils/serve.js --watch"
   },
   "repository": {
     "type": "git",
