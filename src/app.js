@@ -58,6 +58,14 @@ import stub from './socket-stub.js';
           const xLimit = _width / 10;
           const yLimit = _height / 10;
 
+          const orientationMap =
+          {
+            's' : 0,
+            'n': 1,
+            'e': -0.5,
+            'w': 0.5
+          };
+
           canvas.width = _width;
           canvas.height = _height;
 
@@ -79,21 +87,21 @@ import stub from './socket-stub.js';
               let x = i % xLimit * 10;
               let y = Math.floor(i / xLimit) * 10;
 
-              switch(data[i])
+              switch(data[i].type)
               {
-                case 1:
+                case 'self':
                 {
-                  player.push([x, y]);
+                  player.push({x: x, y: y, orientation: data[i].orientation});
                 } break;
 
-                case 2:
+                case 'enemy':
                 {
-                  enemy.push([x, y]);
+                  enemy.push({x: x, y: y, orientation: data[i].orientation});
                 } break;
 
-                case 3:
+                case 'resource':
                 {
-                  resource.push([x, y]);
+                  resource.push({x: x, y: y});
                 } break;
               }
             }
@@ -101,7 +109,7 @@ import stub from './socket-stub.js';
             ctx.beginPath();
             for(let i = 0; i < resource.length; ++i)
             {
-              ctx.rect(resource[i][0], resource[i][1], 10, 10);
+              ctx.rect(resource[i].x, resource[i].y, 10, 10);
             }
 
             ctx.fillStyle = '#ffbf00';
@@ -110,20 +118,33 @@ import stub from './socket-stub.js';
             ctx.beginPath();
             for(let i = 0; i < enemy.length; ++i)
             {
-              ctx.rect(enemy[i][0], enemy[i][1], 10, 10);
+              ctx.save();
+              ctx.translate(enemy[i].x + 5, enemy[i].y + 5);
+              ctx.rotate(Math.PI * orientationMap[enemy[i].orientation]);
+              ctx.moveTo(-5, -5);
+              ctx.lineTo(5, -5);
+              ctx.lineTo(0, 5);
             }
 
             ctx.fillStyle = '#f90050';
             ctx.fill();
+            ctx.restore();
 
+            // player
             ctx.beginPath();
             for(let i = 0; i < player.length; ++i)
             {
-              ctx.rect(player[i][0], player[i][1], 10, 10);
+              ctx.save();
+              ctx.translate(player[i].x + 5, player[i].y + 5);
+              ctx.rotate(Math.PI * orientationMap[player[i].orientation]);
+              ctx.moveTo(-5, -5);
+              ctx.lineTo(5, -5);
+              ctx.lineTo(0, 5);
             }
 
             ctx.fillStyle = '#49f900';
             ctx.fill();
+            ctx.restore();
           }
 
           function drawGrid()

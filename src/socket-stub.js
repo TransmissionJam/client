@@ -62,20 +62,20 @@ function()
             if(!player)
             {
               // player
-              data.push(1);
+              data.push({type:'self', orientation: getRandomOrientation()});
               player = true;
             }
             else if(!enemy)
             {
               // enemy
-              data.push(2);
+              data.push({type:'enemy', orientation: getRandomOrientation()});
               enemy = true;
             }
           }
           else
           {
             // resource
-            data.push(3);
+            data.push({type:'resource', value: 1});
           }
         }
         else
@@ -97,5 +97,12 @@ function()
   function getRandomExecuted()
   {
     return Math.random() > 0.5
+  }
+
+  function getRandomOrientation()
+  {
+    let orientations = ['n','s','w','e'];
+    let orientation = Math.round(Math.random() * 3);
+    return orientations[orientation];
   }
 };
