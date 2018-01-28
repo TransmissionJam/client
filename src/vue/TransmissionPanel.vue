@@ -20,9 +20,14 @@
       <div
         v-for="(command, i) in executed"
         v-bind:key="i"
-        :class="['command', command.type, command.user, command.command]"
+        :class="['command', command.type, command.user, command.command, command.executed ? 'executed' : 'failed']"
       >
+        <div class="icon"></div>
         <div class="indicator"></div>
+        <div class="result">
+          <span v-if="command.executed">✔</span>
+          <span v-if="!command.executed">✖</span>
+        </div>
       </div>
     </div>
   </div>
@@ -59,19 +64,44 @@ export default
         });
       })
     });
+
+    window.app.events.on('transmission:buffer:flush', (commands) =>
+    {
+      instance.buffer.splice(0);
+    });
+
+    window.app.events.on('transmission:executed', (commands) =>
+    {
+      instance.executed.splice(0);
+
+      commands.forEach((command) =>
+      {
+        instance.executed.push
+        ({
+          user: command.user,
+          type: utils.getCommandType(command.command),
+          command: command.command,
+          executed: command.executed
+        });
+      })
+    });
   }
 }
 </script>
 <style lang="css" scoped>
 #transmission-panel
 {
-  width: 200px;
+  width: 157px;
   height: 400px;
-  border-radius: 3px;
+  border-radius: 10px;
   user-select: none;
-  padding: 10px;
-  border: solid #6f6f6f 3px;
+  padding: 20px 10px;
+  border: solid #000000 3px;
   padding-top: 60px;
+  padding-left: 23px;
+  -webkit-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
+  box-shadow: inset 5px 5px 20px -6px rgba(0,0,0,0.75);
 }
 
 #transmission-panel .command
@@ -81,6 +111,27 @@ export default
   margin: 3px;
   position: relative;
   float: none;
+}
+
+#transmission-panel .command.executed
+{
+  color: #0f0;
+}
+
+#transmission-panel .command.failed
+{
+  color: #f00;
+}
+
+#transmission-panel .command .result
+{
+  font-weight: bold;
+  position: absolute;
+  left: -20px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  height: 25px;
 }
 
 #transmission-panel .panel
@@ -97,6 +148,17 @@ export default
   position: relative;
 }
 
+#transmission-panel #buffer
+{
+  width: 45px;
+  padding-left: 10px;
+}
+
+#transmission-panel #executed
+{
+  margin-left: 10px;
+}
+
 #transmission-panel .panel .label
 {
   font-family: 'Bungee', cursive;
@@ -111,14 +173,14 @@ export default
 
 #transmission-panel .command .indicator
 {
-  width: 10px;
-  height: 10px;
+  width: 5px;
+  height: 5px;
   position: absolute;
-  left: -20px;
-  top: 0px;
-  bottom: 0px;
+  right: 2px;
+  bottom: 2px;
   margin: auto;
   border-radius: 50%;
+  opacity: 0.5;
 }
 
 #transmission-panel .command.self .indicator
