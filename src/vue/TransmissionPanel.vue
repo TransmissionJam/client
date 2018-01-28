@@ -180,12 +180,12 @@ export default
   bottom: 2px;
   margin: auto;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 #transmission-panel .command.self .indicator
 {
-  background-color: rgb(0, 153, 0);
+  background-color: rgb(3, 202, 3);
 }
 
 #transmission-panel .command.enemy .indicator
