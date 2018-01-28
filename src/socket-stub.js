@@ -1,7 +1,13 @@
+import { lchmod } from "fs";
+
 export default
 function()
 {
   const events = window.app.events;
+  const _width = 800;
+  const _height = 390;
+  const xLimit = _width / 10;
+  const yLimit = _height / 10;
 
   events.on('commands:send', (commands) =>
   {
@@ -38,6 +44,49 @@ function()
 
       return list;
     })(this));
+
+    events.emit('world:update',(()=>
+    {
+      let data = [];
+      let player = false;
+      let enemy = false;
+
+      for(let i = 0; i < xLimit * yLimit; ++i)
+      {
+        let slot = Math.random();
+
+        if(slot > 0.97)
+        {
+          if(slot > 0.99)
+          {
+            if(!player)
+            {
+              // player
+              data.push(1);
+              player = true;
+            }
+            else if(!enemy)
+            {
+              // enemy
+              data.push(2);
+              enemy = true;
+            }
+          }
+          else
+          {
+            // resource
+            data.push(3);
+          }
+        }
+        else
+        {
+          // empty
+          data.push(0);
+        }
+      }
+
+      return data;
+    })());
   }
 
   function getRandomUser()
